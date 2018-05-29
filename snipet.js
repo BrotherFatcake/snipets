@@ -1,4 +1,12 @@
 
+
+//ARRAYS=======================================
+
+    //JavaScript Arrays — Finding The Minimum, Maximum, Sum, & Average Values
+    //  https://codeburst.io/javascript-arrays-finding-the-minimum-maximum-sum-average-values-f02f1b0ce332
+
+
+    
 //MAP EXAMPLES  =============================================
 
 // what do I get out of the first pass?
@@ -73,3 +81,14 @@ function functionName(arg) {
         arg2.push(`${data[i].name}: ${data[i].grade}`);
       }
 
+//Chang Passfield state on checkbox check/uncheck =============================================
+
+$('#checkBoxInputName').change(function()  {
+  if ($(this).is(':checked')) {
+    $('.js-inputFieldClassName').attr('type', 'text');
+  }
+  else{
+    $('.js-inputFieldClassName').attr('type', 'password');
+  }
+
+})
