@@ -81,7 +81,7 @@ function functionName(arg) {
         arg2.push(`${data[i].name}: ${data[i].grade}`);
       }
 
-//Chang Passfield state on checkbox check/uncheck =============================================
+//Change Passfield state on checkbox check/uncheck =============================================
 
 $('#checkBoxInputName').change(function()  {
   if ($(this).is(':checked')) {
@@ -92,3 +92,32 @@ $('#checkBoxInputName').change(function()  {
   }
 
 })
+
+//FORM INPUT VALIDATION for MODALS=========================
+
+//novalidate required for customs
+<form id='js-newPassForm' role='form' class='newPassForm js-newPassForm' novalidate>
+       
+       <div class='createPassLeft js-createPassLeft col-6 checkBoxGroup required'>
+         checkbox checkBoxGroup
+         
+         Radios need to be required also
+       
+
+
+$('.js-newPassForm').unbind().submit(function(event)  {
+
+
+  checkedCharType = $("input[type=checkbox]:checked").length;
+  checkedPassLength = $("input[type=radio]:checked").length;
+
+  if(!checkedCharType) {
+      $('#openCharTypeModal')[0].click();
+      return false;
+      }    
+
+  
+  if(!checkedPassLength) {
+      $('#openPassLengthModal')[0].click();
+      return false;
+      }  
