@@ -158,7 +158,6 @@ CUSTOM RADIO AND CHECK==================================
 }
 
 /* Original
-
 .checkbox label::before{
     content: "";
     display: inline-block;

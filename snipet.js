@@ -24,6 +24,7 @@ return input.map(
   }
 );
 
+
 //--------------------------------
 
 // mapping data returned from JSON API
