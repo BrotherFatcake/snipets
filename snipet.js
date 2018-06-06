@@ -24,9 +24,143 @@ return input.map(
   }
 );
 
+//--------------------------------
+
+function functionName(arg) {
+  //Do stuff
+  console.log(arg)
+
+  let mapArg = arg.map(
+    function (arg2) {
+      return (arg2 >= x) ? arg2 : null
+    }
+  ).filter(
+    function (arg2) {
+      return (arg2 !== null);
+    }
+  );
+}
 
 //--------------------------------
 
+//Form Listener=======================================
+
+
+$('.js-checkPass').unbind().submit(function(event)   {
+  event.preventDefault();
+  
+  //Do some stuff
+
+  let msg = $('input').val();
+
+  //Check and Radio boxes
+
+  let userSelected = [
+    $('input[id=upper]:checked').val(),
+    $('input[id=lower]:checked').val(),
+    $('input[id=number]:checked').val(),
+    $('input[id=special]:checked').val(),
+    $('input[name=passLength]:checked').val()
+];
+});
+
+
+//jQUERY Check/Radio validations
+
+$('.js-newPassForm').unbind().submit(function(event)  {
+
+
+  checkedCharType = $("input[type=checkbox]:checked").length;
+  checkedPassLength = $("input[type=radio]:checked").length;
+
+  if(!checkedCharType) {
+      $('#openCharTypeModal')[0].click();
+      return false;
+      }    
+
+  
+  if(!checkedPassLength) {
+      $('#openPassLengthModal')[0].click();
+      return false;
+      }   
+
+
+//ADD/REMOVE Classes===============================
+
+$('.js-toDo, .js-goodNewsBadNews, .js-thePassword').addClass('hidden');
+$('.js-passBox, .js-passMagic').removeClass('hidden');
+
+
+//CAll API============
+
+function searchYouTube(userSearchTerm, callback)  {
+ 
+  let query = {
+    part: 'snippet',
+    q: `${userSearchTerm}`,
+    key: `${YTKEY}`
+  };
+  
+
+
+  $.getJSON(YOUTUBE, query, callback);
+}
+
+
+//GET as JSON
+
+  //Don't have to have a function!
+$.get(LYRICAPI+query, callback, "json");
+
+
+  //Function stingify's results
+let pwnedResp = $.get(query, function()  {
+ 
+  let pwnedData = JSON.stringify(pwnedResp.responseText);
+   
+   mapResults(pwnedData);
+
+}, "text");
+
+
+//GET as text
+let pwnedResp = $.get(query, function()  {
+ 
+  let pwnedData = JSON.stringify(pwnedResp.responseText);
+   
+   mapResults(pwnedData);
+
+}, "text");
+
+function callPassApi(passQueryString, callback)  {
+
+  let query = {
+      password: `${passQueryString}`
+    };
+    
+  $.getJSON(RANDOMPASS, query, callback);
+ 
+ }
+
+
+ //non-JSON API===================
+
+
+function sendToPwned(fiveSliced)  {
+
+  let query = PWNED_URL+fiveSliced;
+  
+  let pwnedResp = $.get(query, function()  {
+ 
+     let pwnedData = JSON.stringify(pwnedResp.responseText);
+      
+      mapResults(pwnedData);
+
+  }, "text");
+
+}
+
+ 
 // mapping data returned from JSON API
 
 function mapResults(inputArg) {
@@ -53,22 +187,6 @@ function mapResults(inputArg) {
          `;
     }
 
-//--------------------------------
-
-function functionName(arg) {
-      //Do stuff
-      console.log(arg)
-
-      let mapArg = arg.map(
-        function (arg2) {
-          return (arg2 >= x) ? arg2 : null
-        }
-      ).filter(
-        function (arg2) {
-          return (arg2 !== null);
-        }
-      );
-    }
 
 
 //FOR LOOP FUNCTIONS EXAMPLES  =============================================
@@ -82,7 +200,7 @@ function functionName(arg) {
         arg2.push(`${data[i].name}: ${data[i].grade}`);
       }
 
-//Change Passfield state on checkbox check/uncheck =============================================
+//Change Password field state on checkbox check/uncheck =============================================
 
 $('#checkBoxInputName').change(function()  {
   if ($(this).is(':checked')) {
@@ -122,3 +240,9 @@ $('.js-newPassForm').unbind().submit(function(event)  {
       $('#openPassLengthModal')[0].click();
       return false;
       }  
+
+//STRINGS========================
+
+//replace characters in a string
+
+newString = oldString.replace(/\\n|\\r/g, 'stuff');
